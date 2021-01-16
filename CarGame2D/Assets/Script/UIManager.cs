@@ -6,6 +6,8 @@ public class UIManager : MonoBehaviour
     public Text TxtScore;
     private int iScore;
     private bool BoolGameOver;
+    public AudioSource audioSource;
+
     void Start()
     {
         iScore = 0;
@@ -35,10 +37,13 @@ public class UIManager : MonoBehaviour
         if(Time.timeScale==1)
         {
             Time.timeScale = 0;
+            audioSource.Pause();
         }
         else if (Time.timeScale == 0)
         {
             Time.timeScale = 1;
+            audioSource.Play();
         }
     }
+  
 }
