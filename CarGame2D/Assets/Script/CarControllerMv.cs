@@ -15,6 +15,7 @@ public class CarControllerMv : MonoBehaviour
         //Get Car Position Initially
         v3CarPosition = transform.position;
         AudioManager.AudSrcCarSound.Play();
+        //Time
     }
     void Update()
     {
@@ -26,18 +27,22 @@ public class CarControllerMv : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D col_info)
     {
-        if(col_info.gameObject.tag=="Tg_Enemy")
+        if(col_info.gameObject.tag=="Tg_Enemy" )
         {
+            AudioManager.AudSrcCarSound.Stop();
             AudioManager.AudSrcExplose.Play();
-            Destroy(gameObject);
-            //StartCoroutine(loadScene());
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            //Destroy(gameObject);
+            gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            gameObject.GetComponent<Collider2D>().enabled = false;
+            //Load Nxt Scene After few seconds
+            StartCoroutine(WaitForLoadNxtScn(1.5F));
             UIManager.GameOverActivate();
         }
     }
-    IEnumerator loadScene()
+    IEnumerator WaitForLoadNxtScn(float waitTime)
     {
-        yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        yield return new WaitForSeconds(waitTime);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
 }

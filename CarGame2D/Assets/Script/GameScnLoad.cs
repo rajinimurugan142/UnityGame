@@ -1,20 +1,32 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameScnLoad : MonoBehaviour
 {
     private int ScnBuildIndex;
+    private Text TxtScore;
+    private GameObject GOTxtScore;
+    public AudioSource AudSrcGameOver;
+    public AudioSource AudSrcEngStart;
     void Start()
     {
-    }
-    void Update()
-    {
-
+        if (SceneManager.GetActiveScene().name == "Scn_GameOver_2")
+        {
+            AudSrcGameOver.Play();
+            GOTxtScore = GameObject.FindGameObjectWithTag("Text");
+            TxtScore = GOTxtScore.GetComponent<Text>();
+            TxtScore.text = "SCORE : " + UIManager.iScore;
+        }
+        else if (SceneManager.GetActiveScene().name == "Scn_Menu_0")
+        {
+            AudSrcEngStart.Play();
+        }
     }
     public void LoadGameScn()
     {
         ScnBuildIndex = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log(SceneManager.GetActiveScene().name + ScnBuildIndex);
+        //Debug.Log(SceneManager.GetActiveScene().name + ScnBuildIndex);
         switch (ScnBuildIndex)
         {
             case 0:
@@ -32,7 +44,10 @@ public class GameScnLoad : MonoBehaviour
             default:
                 break;
         }
-
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void OnClickAppExit()
+    {
+        Debug.Log("Application Exited");
+        Application.Quit();
     }
 }

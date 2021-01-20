@@ -4,14 +4,14 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public Text TxtScore;
-    private int iScore;
+    public static int iScore;
     private bool BoolGameOver;
     public AudioSource audioSource;
 
     void Start()
     {
         iScore = 0;
-        TxtScore.text = "SCORE :" + iScore;
+        TxtScore.text = "SCORE : " + iScore;
         BoolGameOver = false;
         InvokeRepeating("ScoreUpdate", 1.0f, 1.0f);
     }
@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        TxtScore.text = "SCORE :" + iScore;
+        TxtScore.text = "SCORE : " + iScore;
     }
     public void ScoreUpdate()
     {
