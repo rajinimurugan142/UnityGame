@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Tg_Enemy
   - Text
+  - Tg_Cars
   layers:
   - Default
   - TransparentFX

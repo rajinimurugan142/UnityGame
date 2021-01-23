@@ -4,6 +4,9 @@ public class AudioManager : MonoBehaviour
 {
     public AudioSource AudSrcCarSound;
     public AudioSource AudSrcExplose;
+    public AudioSource AudSrcCarSlowDown;
+    
+
     // Start is called before the first frame update
     void Start()
     {
